@@ -1,6 +1,8 @@
 package org.example.service;
 
 import org.example.dto.CardDto;
+import org.example.dto.CardDtoUser;
+import org.example.dto.CuseCard;
 import org.example.model.Card;
 import org.example.model.Profile;
 import org.example.repository.CardRepository;
@@ -140,10 +142,10 @@ public class CardService {
         }
     }
 
-    private void rabotaCard(int select, Profile profile) {
+    private void rabotaCard(int select, Profile profile) throws SQLException {
         switch (select){
             case 1:
-                profileCard(profile);
+                profileCardCreat(profile);
                 break;
             case 2:
                 profileCardList(profile);
@@ -160,23 +162,49 @@ public class CardService {
         }
     }
 
-    private void profileReFillCard(Profile profile) {
-        
+    private void profileReFillCard(Profile profile) throws SQLException {
+        System.out.println("Enter your card number:");
+        String cardNumber=Scaner.getStr();
+        CuseCard chused = cardRepository.chuseCard(cardNumber, profile);
+        if (chused.isBor()){
+           cardRepository.profileReFillCard(profile,chused.getCard());
+        }
+        else {
+            System.out.println("Sizda bunday carta mavjud emas");
+        }
     }
 
-    private void profileDeletedCard(Profile profile) {
-
+    private void profileDeletedCard(Profile profile) throws SQLException {
+        boolean deletedCard = cardRepository.profileDeletedCard(profile);
+        if (deletedCard){
+            System.out.println("deleted card");
+            return;
+        }
+        System.out.println("not found deleted card");
     }
 
-    private void profileChangeStatus(Profile profile) {
-
+    private void profileChangeStatus(Profile profile) throws SQLException {
+        List<String> stringList = cardRepository.profileChangeStatus(profile);
+        for (int i = 0; i < stringList.size(); i++) {
+            System.out.println(stringList.get(i));
+        }
     }
 
-    private void profileCardList(Profile profile) {
-
+    private void profileCardList(Profile profile) throws SQLException {
+        List<CardDtoUser> cardDtoUsers = cardRepository.readProfileCardList(profile);
+        for (int i = 0; i < cardDtoUsers.size(); i++) {
+            System.out.println(cardDtoUsers.get(i));
+        }
     }
 
-    private void profileCard(Profile profile) {
-
+    private void profileCardCreat(Profile profile) throws SQLException {
+        System.out.println("Enter Card Number:");
+        String number=Scaner.getStr();
+        boolean profiledCardCreate = cardRepository.profileCardCreate(profile, number);
+        if (profiledCardCreate){
+            System.out.println("Add card profile");
+            return;
+        }
+        System.out.println("not found add profile card ");
     }
 }
