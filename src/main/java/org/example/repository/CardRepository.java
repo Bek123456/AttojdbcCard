@@ -164,11 +164,21 @@ public class CardRepository {
         ResultSet resultSet = preparedStatement.executeQuery();
         if (resultSet.next()){
             if (resultSet.getString("number").equals(number)){
-                System.out.println("hammasi joyida");
-                 ///////////////
+                  Card card1=new Card(resultSet.getInt("id"),
+                          resultSet.getString("number"),
+                          resultSet.getString("exp_date"),resultSet.getDouble("balance")
+                          ,StatusType.valueOf(resultSet.getString("status")),
+                          resultSet.getString("phone"),
+                          resultSet.getTimestamp("created_date").toLocalDateTime());
+                  utkazish(card,card1);
                 return;
             }
         }
         System.out.println("bunday carta mavjud emas");
+    }
+
+    private void utkazish(Card card, Card card1) {
+        System.out.println("Qancha pul utkazmoqchisiz??????");
+        
     }
 }
