@@ -5,6 +5,7 @@ import org.example.repository.ProfileRepository;
 import org.example.scan.Scaner;
 
 import java.sql.SQLException;
+import java.sql.SQLOutput;
 import java.util.List;
 
 public class ProfileService {
@@ -44,10 +45,11 @@ public class ProfileService {
         }
     }
 
-    private void changeStatus(Profile profile) {
+    private void changeStatus(Profile profile) throws SQLException {
         System.out.println("Enter phone number:");
         String phone=Scaner.getStr();
-        profileRepository.changeProfileStatus(profile,phone);
+        String changeProfileStatus = profileRepository.changeProfileStatus(profile, phone);
+        System.out.println(changeProfileStatus);
 
     }
 
