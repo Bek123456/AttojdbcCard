@@ -27,7 +27,7 @@ public class AdminService {
                     return;
                 }
                 if (select>0&&select<6){
-                    menu(select);
+                    menu(select,profile);
                 }
                 else {
                     System.out.println("Qayta urinib kuring");
@@ -38,13 +38,13 @@ public class AdminService {
         }
     }
 
-    private void menu(int select) {
+    private void menu(int select,Profile profile) {
         switch (select){
             case 1:
                 cardService.start();
                 break;
             case 2:
-                terminalService.start();
+                terminalService.start(profile);
                 break;
             case 3:
                 profileService.start();

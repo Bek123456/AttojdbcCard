@@ -24,7 +24,7 @@ public class UserService {
                           break;
                       case 0:
                           System.out.println("<<<<<<");
-                          break;
+                         return;
                       default:
                           System.out.println("Qayta urinib kuring");
                           break;
@@ -35,17 +35,10 @@ public class UserService {
             }
 
         }
-//        while (true){
-//            System.out.println("1.Add Card");
-//            System.out.println("2.Card List");
-//            System.out.println("3.Card Change status");
-//            System.out.println("4.Delete Card");
-//            System.out.println("5.ReFill");
-//            System.out.println("6.Card List");
-//        }
+      }
     }
 
 
 
 
-}
+

@@ -177,8 +177,22 @@ public class CardRepository {
         System.out.println("bunday carta mavjud emas");
     }
 
-    private void utkazish(Card card, Card card1) {
+    private void utkazish(Card card, Card card1) throws SQLException {
         System.out.println("Qancha pul utkazmoqchisiz??????");
-        
+        double balance=Scaner.getDob();
+        if (card.getBalance()<balance){
+            System.out.println("Mablag'ingiz yetarli emas");
+        }
+        Connection connection=Util.getConnection();
+        card1.setBalance(card1.getBalance()+balance);
+        String sql="update card1 set balance=? ";
+        PreparedStatement preparedStatement= connection.prepareStatement(sql);
+        preparedStatement.setDouble(1,card1.getBalance());
+        String sql1="update card set balance=?";
+        PreparedStatement preparedStatement1= connection.prepareStatement(sql1);
+        preparedStatement1.setDouble(1,card.getBalance());
+        preparedStatement1.executeUpdate();
+        connection.close();
+        System.out.println("Utkazma amalga oshirildi");
     }
 }
