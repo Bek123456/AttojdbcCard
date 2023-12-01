@@ -47,7 +47,7 @@ public class AdminService {
                 terminalService.start(profile);
                 break;
             case 3:
-                profileService.start();
+                profileService.start(profile);
                 break;
             case 4:
                 transactionService.start();

@@ -39,4 +39,43 @@ public class TerminalRepository {
         }
         return terminalList;
     }
+
+    public boolean update(String code, String address) throws SQLException {
+        Connection connection=Util.getConnection();
+        String sql="update terminal set address=? where code=?";
+        PreparedStatement preparedStatement= connection.prepareStatement(sql);
+        preparedStatement.setString(1,address);
+        preparedStatement.setString(2,code);
+        int executeUpdate = preparedStatement.executeUpdate();
+        return executeUpdate!=0;
+
+    }
+
+    public Terminal changeStatus(String code) throws SQLException {
+        Connection connection=Util.getConnection();
+        String sql="select *from terminal where code=?";
+        PreparedStatement preparedStatement= connection.prepareStatement(sql);
+        preparedStatement.setString(1,code);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        Terminal terminal;
+        while (resultSet.next()){
+            terminal=new Terminal(resultSet.getInt("id"),
+                    resultSet.getString("code"),
+                    resultSet.getString("address"),
+                    StatusType.valueOf(resultSet.getString("status")),
+                    resultSet.getTimestamp("ereated_date").toLocalDateTime());
+            return terminal;
+        }
+        return new Terminal();
+    }
+
+    public boolean deleted(String code) throws SQLException {
+        Connection connection=Util.getConnection();
+        String sql="delete from terminal where code=?;";
+        PreparedStatement preparedStatement=
+                connection.prepareStatement(sql);
+        preparedStatement.setString(1,code);
+        int executed = preparedStatement.executeUpdate();
+        return executed!=0;
+    }
 }

@@ -57,16 +57,37 @@ public class TerminalService {
           }
       }
 
-    private void deletedTerminal(Profile profile) {
+    private void deletedTerminal(Profile profile) throws SQLException {
+        System.out.println("Enter code terminal");
+        String code=Scaner.getStr();
+        boolean deleted = terminalRepository.deleted(code);
+        if (deleted){
+            System.out.println("deleted terminal");
+            return;
+        }
+        System.out.println("not fount deleted terminal");
 
     }
 
-    private void changeStatus(Profile profile) {
+    private void changeStatus(Profile profile) throws SQLException {
+        System.out.println("Enter code terminal");
+        String code=Scaner.getStr();
+        Terminal terminal = terminalRepository.changeStatus(code);
+        System.out.println(terminal.getStatus());
 
     }
 
-    private void update(Profile profile) {
-        System.out.println();
+    private void update(Profile profile) throws SQLException {
+        System.out.println("Enter terminal code ");
+        String code=Scaner.getStr();
+        System.out.println("Enter terminal address");
+        String address=Scaner.getStr();
+        boolean update = terminalRepository.update(code, address);
+        if (update){
+            System.out.println("Update terminal");
+            return;
+        }
+        System.out.println("not update terminal");
     }
 
     private void reads(Profile profile) throws SQLException {
