@@ -2,7 +2,6 @@ package org.example.service;
 
 import org.example.model.Profile;
 import org.example.scan.Scaner;
-
 public class UserService {
     private static CardService cardService=new CardService();
     private static TransactionService transactionService=new TransactionService();
@@ -10,7 +9,7 @@ public class UserService {
         System.out.println("********User Menu********");
         int select;
         while (true){
-            System.out.println("1.Car Menu");
+            System.out.println("1.Card Menu");
             System.out.println("2.Transaction");
             System.out.println("0.Orqaga");
             try {
@@ -29,14 +28,19 @@ public class UserService {
                           System.out.println("Qayta urinib kuring");
                           break;
                   }
-
             }catch (Exception e){
                 System.out.println("Qayta urinib kuring bu matn");
             }
-
         }
       }
     }
+
+
+
+
+
+
+
 
 
 

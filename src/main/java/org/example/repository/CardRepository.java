@@ -151,48 +151,24 @@ public class CardRepository {
     }
 
     public void profileReFillCard(Profile profile,Card card) throws SQLException {
-        System.out.println("Pul utkazmoqchi bulgan carta raqami kiriting?????");
-        String number= Scaner.getStr();
-        if (number.equals(card.getNumber())){
-            System.out.println("Bu uzizi cartangiz");
-            return;
-        }
+        System.out.println("Qancha pul tashlamoqchisiz");
+        double balance=Scaner.getDob();
         Connection connection=Util.getConnection();
-        String sql="select from card where number=?";
+        card.setBalance(card.getBalance()+balance);
+        String sql="update card set balance=? where number=?";
         PreparedStatement preparedStatement= connection.prepareStatement(sql);
-        preparedStatement.setString(1,number);
-        ResultSet resultSet = preparedStatement.executeQuery();
-        if (resultSet.next()){
-            if (resultSet.getString("number").equals(number)){
-                  Card card1=new Card(resultSet.getInt("id"),
-                          resultSet.getString("number"),
-                          resultSet.getString("exp_date"),resultSet.getDouble("balance")
-                          ,StatusType.valueOf(resultSet.getString("status")),
-                          resultSet.getString("phone"),
-                          resultSet.getTimestamp("created_date").toLocalDateTime());
-                  utkazish(card,card1);
-                return;
-            }
-        }
-        System.out.println("bunday carta mavjud emas");
+        preparedStatement.setDouble(1,card.getBalance());
+        preparedStatement.setString(2,card.getNumber());
+        preparedStatement.executeUpdate();
+        String sql1="insert into transaction(card_number,amount,type)values (?,?,?)";
+        PreparedStatement preparedStatement1=connection.prepareStatement(sql1);
+        preparedStatement1.setString(1,card.getNumber());
+        preparedStatement1.
     }
 
-    private void utkazish(Card card, Card card1) throws SQLException {
-        System.out.println("Qancha pul utkazmoqchisiz??????");
-        double balance=Scaner.getDob();
-        if (card.getBalance()<balance){
-            System.out.println("Mablag'ingiz yetarli emas");
-        }
-        Connection connection=Util.getConnection();
-        card1.setBalance(card1.getBalance()+balance);
-        String sql="update card1 set balance=? ";
-        PreparedStatement preparedStatement= connection.prepareStatement(sql);
-        preparedStatement.setDouble(1,card1.getBalance());
-        String sql1="update card set balance=?";
-        PreparedStatement preparedStatement1= connection.prepareStatement(sql1);
-        preparedStatement1.setDouble(1,card.getBalance());
-        preparedStatement1.executeUpdate();
-        connection.close();
-        System.out.println("Utkazma amalga oshirildi");
+    private void profileReFillCard1(double balance, Card card) throws SQLException {
+
     }
+
+
 }
