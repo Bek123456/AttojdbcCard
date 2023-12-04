@@ -163,7 +163,11 @@ public class CardRepository {
         String sql1="insert into transaction(card_number,amount,type)values (?,?,?)";
         PreparedStatement preparedStatement1=connection.prepareStatement(sql1);
         preparedStatement1.setString(1,card.getNumber());
-        preparedStatement1.
+        preparedStatement1.setDouble(2,balance);
+        preparedStatement1.setString(3,"ReFill");
+        int i = preparedStatement1.executeUpdate();
+        connection.close();
+        System.out.println("Muaffaqiyatli amalga oshirildi");
     }
 
     private void profileReFillCard1(double balance, Card card) throws SQLException {

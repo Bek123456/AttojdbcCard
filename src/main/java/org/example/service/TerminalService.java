@@ -67,6 +67,7 @@ public class TerminalService {
         }
         System.out.println("not fount deleted terminal");
 
+
     }
 
     private void changeStatus(Profile profile) throws SQLException {

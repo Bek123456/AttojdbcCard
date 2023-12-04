@@ -1,6 +1,7 @@
 package org.example.repository;
 
 import org.example.enums.StatusType;
+import org.example.enums.Type;
 import org.example.model.Terminal;
 import org.example.util1.Util;
 
@@ -76,6 +77,26 @@ public class TerminalRepository {
                 connection.prepareStatement(sql);
         preparedStatement.setString(1,code);
         int executed = preparedStatement.executeUpdate();
+        connection.close();
         return executed!=0;
+    }
+
+    public Terminal checkTerminal(String terminalNumber) throws SQLException {
+        Connection connection=Util.getConnection();
+        String sql="select *from terminal where code=?";
+        PreparedStatement preparedStatement= connection.prepareStatement(sql);
+        preparedStatement.setString(1,terminalNumber);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        connection.close();
+        Terminal terminal=new Terminal();
+        while (resultSet.next()){
+           terminal.setStatus(StatusType.valueOf(resultSet.getString("status")));
+           terminal.setId(resultSet.getInt("id"));
+           terminal.setCode(resultSet.getString("code"));
+           terminal.setAddress(resultSet.getString("address"));
+           terminal.setCreated_date(resultSet.getTimestamp("created_date").toLocalDateTime());
+           return terminal;
+        }
+        return terminal;
     }
 }
