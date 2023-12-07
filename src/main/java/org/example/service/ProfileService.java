@@ -1,5 +1,6 @@
 package org.example.service;
 
+import lombok.Setter;
 import org.example.model.Profile;
 import org.example.repository.ProfileRepository;
 import org.example.scan.Scaner;
@@ -7,9 +8,10 @@ import org.example.scan.Scaner;
 import java.sql.SQLException;
 import java.sql.SQLOutput;
 import java.util.List;
-
+@Setter
 public class ProfileService {
-     private static ProfileRepository profileRepository=new ProfileRepository();
+//     private static ProfileRepository profileRepository=new ProfileRepository();
+    private ProfileRepository profileRepository;
     public void start(Profile profile) {
         int select;
         while (true) {

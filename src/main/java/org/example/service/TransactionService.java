@@ -1,5 +1,6 @@
 package org.example.service;
 
+import lombok.Setter;
 import org.example.dto.TransactionDto;
 import org.example.model.Card;
 import org.example.model.Profile;
@@ -14,12 +15,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
-
+@Setter
 public class TransactionService {
-private static TransactionRepository transactionRepository=
-        new TransactionRepository();
-private static TerminalRepository terminalRepository=
-        new TerminalRepository();
+//private static TransactionRepository transactionRepository=
+//        new TransactionRepository();
+//private static TerminalRepository terminalRepository=
+//        new TerminalRepository();
+    private TransactionRepository transactionRepository;
+    private TerminalRepository terminalRepository;
     public void start() {
         System.out.println("*****Transaction Service******");
         int select;

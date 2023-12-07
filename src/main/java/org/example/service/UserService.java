@@ -1,10 +1,15 @@
 package org.example.service;
 
+import lombok.Setter;
 import org.example.model.Profile;
 import org.example.scan.Scaner;
+
+@Setter
 public class UserService {
-    private static CardService cardService=new CardService();
-    private static TransactionService transactionService=new TransactionService();
+//    private static CardService cardService=new CardService();
+//    private static TransactionService transactionService=new TransactionService();
+    private CardService cardService;
+    private TransactionService transactionService;
     public void start(Profile profile){
         System.out.println("********User Menu********");
         int select;

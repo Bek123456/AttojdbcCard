@@ -1,5 +1,6 @@
 package org.example.service;
 
+import lombok.Setter;
 import org.example.dto.CardDto;
 import org.example.dto.CardDtoUser;
 import org.example.dto.CuseCard;
@@ -11,9 +12,10 @@ import org.example.scan.Scaner;
 import java.sql.SQLException;
 import java.util.EventListener;
 import java.util.List;
-
+@Setter
 public class CardService {
-    private static CardRepository cardRepository=new CardRepository();
+//    private static CardRepository cardRepository=new CardRepository();
+      private CardRepository cardRepository;
 
     public void start() {
         System.out.println("*******Card Menu*******");

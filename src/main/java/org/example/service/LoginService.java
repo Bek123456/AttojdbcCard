@@ -1,5 +1,6 @@
 package org.example.service;
 
+import lombok.Setter;
 import org.example.enums.StatusType;
 import org.example.enums.UserRole;
 import org.example.model.Profile;
@@ -8,10 +9,12 @@ import org.example.util1.Util;
 
 import java.sql.*;
 import java.time.LocalDateTime;
-
+@Setter
 public class LoginService {
-   private static AdminService adminService=new AdminService();
-   private static UserService userService=new UserService();
+//   private static AdminService adminService=new AdminService();
+//   private static UserService userService=new UserService();
+    private AdminService adminService;
+    private UserService userService;
     public void start() throws SQLException {
         System.out.println("=====Login=====");
         String phone;

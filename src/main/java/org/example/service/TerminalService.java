@@ -1,5 +1,6 @@
 package org.example.service;
 
+import lombok.Setter;
 import org.example.model.Profile;
 import org.example.model.Terminal;
 import org.example.repository.TerminalRepository;
@@ -7,9 +8,10 @@ import org.example.scan.Scaner;
 
 import java.sql.SQLException;
 import java.util.List;
-
+@Setter
 public class TerminalService {
-      private static TerminalRepository terminalRepository=new TerminalRepository();
+//      private static TerminalRepository terminalRepository=new TerminalRepository();
+    private TerminalRepository terminalRepository;
     public void start(Profile profile){
         System.out.println("******Terminal Service******");
         int select;

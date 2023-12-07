@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean name="cardRepository" class="org.example.repository.CardRepository"/>
+    <bean name="profileRepository" class="org.example.repository.ProfileRepository"/>
+    <bean name="statisticRepository" class="org.example.repository.StatisticRepository"/>
+    <bean name="terminalRepository" class="org.example.repository.TerminalRepository"/>
+    <bean name="transactionRepository" class="org.example.repository.TransactionRepository"/>
+
+    <bean name="adminService" class="org.example.service.AdminService" autowire="byName"/>
+    <bean name="cardService" class="org.example.service.CardService" autowire="byName"/>
+    <bean name="terminalService" class="org.example.service.TerminalService" autowire="byName"/>
+    <bean name="transactionService" class="org.example.service.TransactionService" autowire="byName"/>
+    <bean name="statisticService" class="org.example.service.StatisticService"/>
+    <bean name="regstrService" class="org.example.service.RegstrService"/>
+    <bean name="profileService" class="org.example.service.ProfileService"/>
+    <bean name="loginService" class="org.example.service.LoginService" autowire="byName"/>
+    <bean name="userService" class="org.example.service.UserService" autowire="byName"/>
+
+    <bean name="mainController" class="org.example.controller.MainController" autowire="byName"/>
+
+</beans>

@@ -2,6 +2,8 @@ package org.example.service;
 
 import org.example.scan.Scaner;
 
+import java.time.LocalDateTime;
+
 public class StatisticService {
 
     public void start() {
@@ -80,6 +82,7 @@ public class StatisticService {
     }
 
     private void bugungiTulov() {
+        LocalDateTime localDateTime=LocalDateTime.now();
 
     }
 }

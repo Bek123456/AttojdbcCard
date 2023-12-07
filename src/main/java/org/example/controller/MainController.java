@@ -1,14 +1,17 @@
 package org.example.controller;
 
+import lombok.Setter;
 import org.example.scan.Scaner;
 import org.example.service.LoginService;
 import org.example.service.RegstrService;
 
 import java.sql.SQLException;
-
+@Setter
 public class MainController {
-    private static LoginService loginService=new LoginService();
-    private static RegstrService regstrService=new RegstrService();
+//    private static LoginService loginService=new LoginService();
+//    private static RegstrService regstrService=new RegstrService();
+      private LoginService loginService;
+      private RegstrService regstrService;
     public void start() throws SQLException {
         System.out.println("=====Menu=======");
         String select;

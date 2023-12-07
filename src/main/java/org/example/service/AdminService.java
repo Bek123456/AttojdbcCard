@@ -1,14 +1,22 @@
 package org.example.service;
 
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.example.model.Profile;
 import org.example.scan.Scaner;
+@Setter
 
 public class AdminService {
-    private static CardService cardService=new CardService();
-    private static TerminalService terminalService=new TerminalService();
-    private static ProfileService profileService=new ProfileService();
-    private static TransactionService transactionService=new TransactionService();
-    private static StatisticService statisticService=new StatisticService();
+//    private static CardService cardService=new CardService();
+//    private static TerminalService terminalService=new TerminalService();
+//    private static ProfileService profileService=new ProfileService();
+//    private static TransactionService transactionService=new TransactionService();
+//    private static StatisticService statisticService=new StatisticService();
+    private CardService  cardService;
+    private TerminalService terminalService;
+    private ProfileService profileService;
+    private TransactionService transactionService;
+    private StatisticService statisticService;
 
     public void start(Profile profile){
         System.out.println("******Admin Menu******");
